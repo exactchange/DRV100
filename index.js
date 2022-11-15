@@ -17,7 +17,6 @@ module.exports = ({ drv, peers, serviceEvents }) => {
    */
 
   const Contract = async ({
-    token,
     sender,
     recipient,
     recipientAddress,
@@ -76,7 +75,6 @@ module.exports = ({ drv, peers, serviceEvents }) => {
      */
 
     const transferResult = await Contract({
-      token,
       sender: recipient,
       recipient: sender,
       recipientAddress: sender.userData.address,
