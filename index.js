@@ -17,8 +17,7 @@ module.exports = ({ drv, peers, serviceEvents }) => {
    */
 
   const Contract = async ({
-    sender,
-    recipient,
+    senderAddress,
     recipientAddress,
     contract = 'DRV100',
     usdValue,
@@ -37,7 +36,7 @@ module.exports = ({ drv, peers, serviceEvents }) => {
         serviceName: '/',
         method: 'transaction',
         body: {
-          senderAddress: sender.userData.address,
+          senderAddress,
           recipientAddress,
           contract,
           usdValue,
@@ -75,9 +74,8 @@ module.exports = ({ drv, peers, serviceEvents }) => {
      */
 
     const transferResult = await Contract({
-      sender: recipient,
-      recipient: sender,
-      recipientAddress: sender.userData.address,
+      senderAddress: recipientAddress,
+      recipientAddress: senderAddress,
       contract: 'DRV100',
       usdValue,
       drvValue,
@@ -86,7 +84,7 @@ module.exports = ({ drv, peers, serviceEvents }) => {
 
     if (!transferResult) {
       console.log(
-        '<DRV> Transfer Error: There was a problem transferring DRV between accounts.', sender, recipient
+        '<DRV> Transfer Error: There was a problem transferring DRV between accounts.', senderAddress, recipientAddress
       );
     }
 
