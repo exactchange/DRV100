@@ -5,6 +5,8 @@
  *
  */
 
+const isValid = require('./validations');
+
 const SUCCESS_CODE = 200;
 
 module.exports = ({ drv, peers, serviceEvents }) => {
@@ -24,6 +26,12 @@ module.exports = ({ drv, peers, serviceEvents }) => {
     drvValue,
     isDrv
   }) => {
+    if (!isValid({
+      senderAddress,
+      recipientAddress,
+      usdValue,
+      drvValue
+    })) return false;
 
     /*
      * If DRV is being transferred, send a normal POST request
