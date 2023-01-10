@@ -29,6 +29,7 @@ module.exports = ({ drv, peers, serviceEvents }) => {
     if (!isValid({
       senderAddress,
       recipientAddress,
+      contract,
       usdValue,
       drvValue
     })) return false;
